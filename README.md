@@ -9,8 +9,8 @@ This is submission for Superhack 2024.
 - [x] Add player and movement
 - [x] Shooting projectile and collisions
 - [x] Enemy types
-- [ ] Colorizing the game
-- [ ] Add score
+- [x] Colorizing the game
+- [x] Add score
 - [ ] Add UI
 
 ### web3
