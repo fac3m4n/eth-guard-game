@@ -5,6 +5,8 @@ const playerScore = document.querySelector("#playerScore");
 const modal = document.querySelector("#modal");
 const modalScore = document.querySelector("#modalScore");
 const restartBtn = document.querySelector("#restartBtn");
+const startBtn = document.querySelector("#startBtn");
+const startModal = document.querySelector("#startModal");
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
@@ -252,5 +254,9 @@ restartBtn.addEventListener("click", () => {
   modal.style.display = "none";
 });
 
-animate();
-spawnEnemies();
+startBtn.addEventListener("click", () => {
+  init();
+  animate();
+  spawnEnemies();
+  startModal.style.display = "none";
+});
