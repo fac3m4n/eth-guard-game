@@ -1,103 +1,123 @@
-<style>
-  body {
-    margin: 0;
-    font-family: sans-serif;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ETH Guard</title>
+  </head>
 
-<!-- Score -->
-<div
-  style="
-    position: absolute;
-    color: white;
-    padding: 8px;
-    font-size: 14px;
-    user-select: none;
-  "
->
-  <span>Score: <span id="playerScore">0</span></span>
-</div>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+  </style>
+  <body>
+    <!-- Score -->
+    <div
+      style="
+        position: absolute;
+        color: white;
+        padding: 8px;
+        font-size: 14px;
+        user-select: none;
+      "
+    >
+      <span>Score: <span id="playerScore">0</span></span>
+    </div>
 
-<!-- Modal -->
-<div
-  id="modal"
-  style="
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    padding: 16px;
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
-    border-radius: 5px;
-  "
->
-  <label style="font-size: 14px; color: gray">Game Over</label>
-  <h1
-    id="modalScore"
-    style="font-size: 48px; margin-bottom: 0; margin-top: 8px"
-  >
-    0
-  </h1>
-  <p style="margin: 0; font-size: 14px; color: gray">Points</p>
-  <button
-    id="restartBtn"
-    style="
-      margin-top: 12px;
-      background-color: blue;
-      border: none;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    "
-  >
-    Restart Game
-  </button>
-</div>
+    <!-- Modal -->
+    <div
+      id="modal"
+      style="
+        display: none;
+        position: absolute;
+        background-color: white;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        padding: 16px;
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+        border-radius: 5px;
+      "
+    >
+      <label style="font-size: 14px; color: gray">Game Over</label>
+      <h1
+        id="modalScore"
+        style="font-size: 48px; margin-bottom: 0; margin-top: 8px"
+      >
+        0
+      </h1>
+      <p style="margin: 0; font-size: 14px; color: gray">Points</p>
+      <button
+        id="restartBtn"
+        style="
+          margin-top: 12px;
+          background-color: blue;
+          border: none;
+          color: white;
+          padding: 8px 16px;
+          border-radius: 5px;
+          cursor: pointer;
+        "
+      >
+        Restart Game
+      </button>
+    </div>
 
-<!-- Start Modal -->
-<div
-  id="startModal"
-  style="
-    position: absolute;
-    background-color: white;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    padding: 16px;
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
-    border-radius: 5px;
-  "
->
-  <h1 style="font-size: 24px; margin-bottom: 0; margin-top: 8px">ETH Guard</h1>
+    <!-- Start Modal -->
+    <div
+      id="startModal"
+      style="
+        position: absolute;
+        background-color: white;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        padding: 16px;
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+        border-radius: 5px;
+      "
+    >
+      <h1 style="font-size: 24px; margin-bottom: 0; margin-top: 8px">
+        ETH Guard
+      </h1>
 
-  <button
-    id="startBtn"
-    style="
-      margin-top: 12px;
-      background-color: blue;
-      border: none;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    "
-  >
-    Start
-  </button>
-</div>
-<canvas></canvas>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-  integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-></script>
-<script src="./js/classes.js"></script>
-<script src="script.js"></script>
+      <button
+        id="startBtn"
+        style="
+          margin-top: 12px;
+          background-color: blue;
+          border: none;
+          color: white;
+          padding: 8px 16px;
+          border-radius: 5px;
+          cursor: pointer;
+        "
+      >
+        Start
+      </button>
+    </div>
+    <canvas></canvas>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"
+      integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./js/audio.js"></script>
+    <script src="./js/classes.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
