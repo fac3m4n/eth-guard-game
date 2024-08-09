@@ -8,6 +8,9 @@ const restartBtn = document.querySelector("#restartBtn");
 const startBtn = document.querySelector("#startBtn");
 const startModal = document.querySelector("#startModal");
 
+const volumeUpEl = document.querySelector("#volumeUpEl");
+const volumeOffEl = document.querySelector("#volumeOffEl");
+
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
@@ -346,9 +349,12 @@ function animate() {
   }
 }
 
+let audioInitialized = false;
+
 addEventListener("click", (event) => {
-  if (!audio.background.playing()) {
+  if (!audio.background.playing() && !audioInitialized) {
     audio.background.play();
+    audioInitialized = true;
   }
   if (game.active) {
     const angle = Math.atan2(
@@ -411,6 +417,26 @@ startBtn.addEventListener("click", () => {
       startModal.style.display = "none";
     },
   });
+});
+
+volumeUpEl.addEventListener("click", () => {
+  audio.background.pause();
+  volumeOffEl.style.display = "block";
+  volumeUpEl.style.display = "none";
+
+  for (let key in audio) {
+    audio[key].mute(true);
+  }
+});
+
+// unmute everything
+volumeOffEl.addEventListener("click", () => {
+  if (audioInitialized) audio.background.play();
+  volumeOffEl.style.display = "none";
+  volumeUpEl.style.display = "block";
+  for (let key in audio) {
+    audio[key].mute(false);
+  }
 });
 
 window.addEventListener("keydown", (event) => {
