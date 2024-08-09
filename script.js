@@ -115,8 +115,6 @@ function animate() {
     }
   }
 
-  console.log(powerUps);
-
   // machine gun animation / implementation
   if (player.powerUp === "MachineGun") {
     const angle = Math.atan2(
@@ -305,6 +303,18 @@ window.addEventListener("keydown", (event) => {
       player.velocity.x -= 1;
       break;
     case "ArrowDown":
+      player.velocity.y += 1;
+      break;
+    case "d":
+      player.velocity.x += 1;
+      break;
+    case "w":
+      player.velocity.y -= 1;
+      break;
+    case "a":
+      player.velocity.x -= 1;
+      break;
+    case "s":
       player.velocity.y += 1;
       break;
   }
