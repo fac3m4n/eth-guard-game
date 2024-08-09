@@ -11,7 +11,7 @@ This is submission for Superhack 2024.
 - [x] Enemy types
 - [x] Colorizing the game
 - [x] Add score
-- [ ] Add UI
+- [x] Add UI
 - [ ] Sound effects
 - [ ] Background effects
 
