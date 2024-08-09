@@ -114,6 +114,7 @@ let particles = [];
 let animationId;
 let intervalId;
 let score = 0;
+playerScore.innerHTML = 0;
 
 function init() {
   player = new Player(x, y, 10, "white");
@@ -192,6 +193,15 @@ function animate() {
       cancelAnimationFrame(animationId);
       clearInterval(intervalId);
       modal.style.display = "block";
+      gsap.fromTo(
+        "#modal",
+        { scale: 0.8, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          ease: "expo",
+        }
+      );
       modalScore.innerHTML = score;
     }
 
@@ -251,12 +261,28 @@ restartBtn.addEventListener("click", () => {
   init();
   animate();
   spawnEnemies();
-  modal.style.display = "none";
+  gsap.to("#modal", {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.2,
+    ease: "expo.in",
+    onComplete: () => {
+      modal.style.display = "none";
+    },
+  });
 });
 
 startBtn.addEventListener("click", () => {
   init();
   animate();
   spawnEnemies();
-  startModal.style.display = "none";
+  gsap.to("#startModal", {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.2,
+    ease: "expo.in",
+    onComplete: () => {
+      startModal.style.display = "none";
+    },
+  });
 });
