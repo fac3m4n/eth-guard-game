@@ -1,5 +1,5 @@
 class Player {
-  constructor(x, y, radius, color) {
+  constructor(x, y, radius, color, imageSrc) {
     this.x = x;
     this.y = y;
     this.radius = radius;
@@ -8,13 +8,30 @@ class Player {
       x: 0,
       y: 0,
     };
+
+    this.image = new Image();
+    this.image.src = imageSrc;
+
+    this.width = 40;
+    this.height = 40;
+  }
+
+  setImage(imageSrc) {
+    this.image.src = imageSrc;
   }
 
   draw() {
-    c.beginPath();
-    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    c.fillStyle = this.color;
-    c.fill();
+    const angle = Math.atan2(
+      mouse.position.y - this.y,
+      mouse.position.x - this.x
+    );
+
+    c.save(); // Save the current state
+    c.translate(this.x, this.y); // Move the rotation point to the player’s position
+    c.rotate(angle); // Rotate the canvas to the calculated angle
+    c.translate(-this.width / 2, -this.height / 2); // Center the image on the player's position
+    c.drawImage(this.image, 0, 0, this.width, this.height); // Draw the image
+    c.restore(); // Restore the previous state
   }
 
   update() {

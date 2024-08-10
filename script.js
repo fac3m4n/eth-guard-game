@@ -34,7 +34,7 @@ let game = {
 function init() {
   const x = canvas.width / 2;
   const y = canvas.height / 2;
-  player = new Player(x, y, 10, "white");
+  player = new Player(x, y, 10, "white", "./img/guardian.png");
   projectiles = [];
   enemies = [];
   particles = [];
@@ -107,7 +107,7 @@ function spawnPowerUps() {
         },
       })
     );
-  }, 10000);
+  }, 1000);
 }
 
 function createScoreLabel({ position, score }) {
@@ -176,13 +176,16 @@ function animate() {
     if (dist < powerUp.image.height / 2 + player.radius) {
       powerUps.splice(i, 1);
       player.powerUp = "MachineGun";
-      player.color = "yellow";
+      player.width = 60;
+      player.setImage("./img/guardianBoosted.png");
+
       audio.powerUpNoise.play();
 
       // power up runs out
       setTimeout(() => {
         player.powerUp = null;
-        player.color = "white";
+        player.width = 40;
+        player.setImage("./img/guardian.png");
       }, 5000);
     }
   }
@@ -207,22 +210,6 @@ function animate() {
     if (frames % 5 === 0) {
       audio.shoot.play();
     }
-  }
-  // machine gun animation / implementation
-  if (player.powerUp === "MachineGun") {
-    const angle = Math.atan2(
-      mouse.position.y - player.y,
-      mouse.position.x - player.x
-    );
-    const velocity = {
-      x: Math.cos(angle) * 5,
-      y: Math.sin(angle) * 5,
-    };
-
-    if (frames % 2 === 0)
-      projectiles.push(
-        new Projectile(player.x, player.y, 5, "yellow", velocity)
-      );
   }
 
   for (let index = particles.length - 1; index >= 0; index--) {

@@ -24,3 +24,4 @@ This is submission for Superhack 2024.
 
 - [ ] add multiplayer
 - [ ] leaderboards
+- [ ] add account abstaraction
