@@ -12,8 +12,8 @@ This is submission for Superhack 2024.
 - [x] Colorizing the game
 - [x] Add score
 - [x] Add UI
-- [ ] Sound effects
-- [ ] Background effects
+- [x] Sound effects
+- [x] Background effects
 
 ### web3
 
