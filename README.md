@@ -19,3 +19,8 @@ This is submission for Superhack 2024.
 
 - [ ] thirdweb SDK integration
 - [ ] smart contract deployment
+
+### roadmap
+
+- [ ] add multiplayer
+- [ ] leaderboards
