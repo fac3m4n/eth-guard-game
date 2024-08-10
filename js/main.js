@@ -107,7 +107,7 @@ function spawnPowerUps() {
         },
       })
     );
-  }, 1000);
+  }, 10000);
 }
 
 function createScoreLabel({ position, score }) {
