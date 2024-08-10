@@ -258,7 +258,7 @@ function animate() {
     if (dist - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animationId);
       clearInterval(intervalId);
-
+      clearInterval(spawnPowerUpsId);
       audio.death.play();
       game.active = false;
 
@@ -367,19 +367,6 @@ function shoot({ x, y }) {
   }
 }
 
-function shoot({ x, y }) {
-  if (game.active) {
-    const angle = Math.atan2(y - player.y, x - player.x);
-    const velocity = {
-      x: Math.cos(angle) * 5,
-      y: Math.sin(angle) * 5,
-    };
-    projectiles.push(new Projectile(player.x, player.y, 5, "white", velocity));
-
-    audio.shoot.play();
-  }
-}
-
 window.addEventListener("click", (event) => {
   if (!audio.background.playing() && !audioInitialized) {
     audio.background.play();
@@ -405,6 +392,7 @@ const mouse = {
     y: 0,
   },
 };
+
 addEventListener("mousemove", (event) => {
   mouse.position.x = event.clientX;
   mouse.position.y = event.clientY;
@@ -477,6 +465,19 @@ window.addEventListener("resize", () => {
   canvas.height = innerHeight;
 
   init();
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    // inactive
+    // clearIntervals
+    clearInterval(intervalId);
+    clearInterval(spawnPowerUpsId);
+  } else {
+    // spawnEnemies spawnPowerUps
+    spawnEnemies();
+    spawnPowerUps();
+  }
 });
 
 window.addEventListener("keydown", (event) => {
